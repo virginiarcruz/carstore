@@ -3,47 +3,51 @@
 
   var app = (function appController() {
     return {
-      init: function () {
+      init:function () {
         console.log('app init');
         this.companyInfo();
         this.initEvents();
-
       },
 
       initEvents: function initEvents() {
-        $('[data-js="cadastro"]').on('submit', this.handleSubmit);
+        $('[data-js="form-register"]').on('submit', this.handleClickSubmit);
       },
 
-      handleSubmit: function handleSubmit(e) {
+      handleClickSubmit: function handleClickSubmit(e) {
         e.preventDefault();
-        var $tableCar = $('[data-js="table-cadastro"]').get();
-        $tableCar.appendChild(app.createNewCar());
+        var $tableRegisterCar = $('[data-js="table-register"]').get();
+        $tableRegisterCar.appendChild(app.createNewCar());
+        app.clearForm();
+        app.handleDataForm();
+      },
+
+      handleDataForm: function handleDataForm() {
+        var $inputs = new DOM('input');
+        $inputs.forEach(function ($input, i, e) {
+          console.log($input.value);
+        });
       },
 
       createNewCar: function createNewCar() {
-
-        // cria o fragmento a tr e a td
         var $fragment = document.createDocumentFragment();
-        var $tr = document.createElement('tr');
-        var $tdImage = document.createElement('td');
-        var $image = document.createElement('img');
+        var $tr = document.createElement('tr');       
+        var $tdImagem = document.createElement('td');
         var $tdMarca = document.createElement('td');
         var $tdAno = document.createElement('td');
         var $tdPlaca = document.createElement('td');
         var $tdCor = document.createElement('td');
 
-        // em cada td coloca o valor dos inputs
-        $tdImage.textContent = $('[data-js="imagem"]').get().value;
-        $tdMarca.textContent = $('[data-js="marcaModelo"]').get().value;
-        $tdAno.textContent = $('[data-js="ano"]').get().value;
-        $tdPlaca.textContent = $('[data-js="placa"]').get().value;
-        $tdCor.textContent = $('[data-js="cor"]').get().value;
+        var $imagem = document.createElement('img');
 
-        $image.setAttribute('src', $('[data-js="imagem"]').get().value);
-        $tdImage.appendChild($image);
+        $tdMarca.textContent =  $('[data-js="brand"]').get().value;  
+        $tdAno.textContent =  $('[data-js="year"]').get().value;  
+        $tdPlaca.textContent =  $('[data-js="plate"]').get().value;  
+        $tdCor.textContent = $('[data-js="color"]').get().value;  
+        
+        $imagem.setAttribute('src', $('[data-js="image"]').get().value);
+        $tdImagem.appendChild($imagem);
 
-        // adiciona cada td dentro da tr
-        $tr.appendChild($tdImage);
+        $tr.appendChild($tdImagem);
         $tr.appendChild($tdMarca);
         $tr.appendChild($tdAno);
         $tr.appendChild($tdPlaca);
@@ -52,17 +56,22 @@
         return $fragment.appendChild($tr);
       },
 
+      clearForm: function clearForm() {
+        var $form = $('[data-js="form-register"]').get();
+        $form.reset();
+      },
+
       companyInfo: function companyInfo() {
         var ajax = new XMLHttpRequest();
-        ajax.open('GET', './company.json', true); // true chama de forma assincrona
+        ajax.open('GET', './company.json', true);
         ajax.send();
         ajax.addEventListener('readystatechange', this.getCompanyInfo, false);
       },
 
       getCompanyInfo: function getCompanyInfo() {
-        if (app.isReady.call(this)) //  o this dentro dele é o ajax
+        if (app.isReady.call(this))
           return;
-        var data = JSON.parse(this.responseText); // converte para um objeto JS
+        var data = JSON.parse(this.responseText);
         var $companyName = $('[data-js="company-name"]').get();
         var $companyPhone = $('[data-js="company-phone"]').get();
         $companyName.textContent = data.name;
@@ -72,9 +81,15 @@
       isReady: function isReady() {
         return this.readyState === 4 && this.status === 200;
       }
-    };
+
+    }
+    
   })();
 
   app.init();
+
+
+
+
 
 })(window.DOM);

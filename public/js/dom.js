@@ -52,7 +52,7 @@
     return this.element[index];
   };
 
-    DOM.prototype.forEach = function forEach() {
+  DOM.prototype.forEach = function forEach() {
     return Array.prototype.forEach.apply(this.element, arguments);
   }
 
