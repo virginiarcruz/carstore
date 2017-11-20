@@ -16,16 +16,10 @@
       handleClickSubmit: function handleClickSubmit(e) {
         e.preventDefault();
         var $tableRegisterCar = $('[data-js="table-register"]').get();
-        $tableRegisterCar.appendChild(app.createNewCar());
-        app.clearForm();
+        // $tableRegisterCar.appendChild(app.createNewCar());
+        // $tableRegisterCar.appendChild(app.handleDataForm());
         app.handleDataForm();
-      },
-
-      handleDataForm: function handleDataForm() {
-        var $inputs = new DOM('input');
-        $inputs.forEach(function ($input, i, e) {
-          console.log($input.value);
-        });
+        // app.clearForm();
       },
 
       createNewCar: function createNewCar() {
@@ -54,6 +48,25 @@
         $tr.appendChild($tdCor);
 
         return $fragment.appendChild($tr);
+      },
+
+      handleDataForm: function handleDataForm() {
+        var $inputs = new DOM('input');
+        var $fragment = document.createDocumentFragment();
+        var $tableRegisterCar = $('[data-js="table-register"]').get();
+        var $fragment = document.createDocumentFragment();
+        var $tr = document.createElement('tr'); 
+        var $td = document.createElement('td');
+        $inputs.map(function ($input, i, e) {
+          $td.textContent = $input.value;
+          return $td;
+          // console.log('TR: ', $fragment.appendChild($tr));
+          // $tableRegisterCar.appendChild($tr);
+        });
+        console.log($inputs.get());
+        $tr.appendChild($inputs.get());
+        console.log('TR: ', $tr);
+
       },
 
       clearForm: function clearForm() {
