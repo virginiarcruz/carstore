@@ -1,2 +1,4 @@
-# carstore
-Projeto Loja de Carros - Curso JS
+# Car Store
+
+
+Projeto para Loja de Carros - Curso JavaScript Ninja

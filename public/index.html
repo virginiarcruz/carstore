@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Car Store</title>
+  <style>
+    html {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 20px;
+      color: green;
+    }
+
+    h2 {
+      font-size: 18px;
+      color: #333;
+    }
+
+    img {
+      max-width: 200px;
+    }
+    fieldset {
+      border: none;
+    }
+    label {
+      display: block;
+      font-size: 12px;
+    }
+    input {
+      border: 1px solid #ccc;
+      padding: 5px 20px;
+      font-size: 14px;
+    }
+
+    .car-list,  .form-register {
+      max-width: 70%;
+      margin: 0 auto;
+    }
+
+    .form-register {
+        background: #f2f2f2;
+        padding: 20px 20px;
+    }
+
+    .car-list {
+      margin-top: 20px;
+    }
+
+    .button {
+      background: #999;
+      color: #fff;
+      margin-top: 20px;
+      border: none;
+    }
+
+    .table-cars {
+      width: 100%;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .table-cars tr {
+        padding: 10px;
+    }
+
+    .table-cars tr:nth-child(even) {background: #f1f1f1}
+    .table-cars tr:nth-child(odd) {background: #fff}
+
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1>
+      <span data-js="company-name"></span> -
+      <span data-js="company-phone"></span>
+    </h1>
+
+    <form data-js="form-register" class="form-register" action="">
+      <fieldset>
+        <label>Imagem do carro:</label>
+        <input data-js="image" type="url">
+      </fieldset>
+      <fieldset>
+        <label>Marca / Modelo:</label>
+        <input data-js="brand" type="text">
+      </fieldset>
+      <fieldset>
+        <label>Ano:</label>
+        <input data-js="year" type="number">
+      </fieldset>
+      <fieldset>
+        <label>Placa:</label>
+        <input data-js="plate" type="text">
+      </fieldset>
+      <fieldset>
+        <label>Cor:</label>
+        <input data-js="color" type="text">
+      </fieldset>
+
+      <input data-js="submit" class="button" type="submit" value="CADASTRAR">
+    </form>
+
+    <div data-js="carrosCadastrados" class="car-list">
+     <h2>Todos os carros cadastrados</h2>
+     <table class="table-cars">
+       <thead>
+          <th>Imagem</th>
+          <th>Marca</th>
+          <th>Ano</th>
+          <th>Placa</th>
+          <th>Cor</th>
+       </thead>
+       <tbody data-js="table-register">
+
+
+       </tbody>
+     </table>
+    </div>
+  </main>
+
+  <script src="js/dom.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
