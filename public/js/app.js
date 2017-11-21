@@ -16,57 +16,34 @@
       handleClickSubmit: function handleClickSubmit(e) {
         e.preventDefault();
         var $tableRegisterCar = $('[data-js="table-register"]').get();
-        // $tableRegisterCar.appendChild(app.createNewCar());
-        // $tableRegisterCar.appendChild(app.handleDataForm());
-        app.handleDataForm();
-        // app.clearForm();
+        $tableRegisterCar.appendChild(app.createNewCar());
+        app.clearForm();
       },
 
       createNewCar: function createNewCar() {
-        var $fragment = document.createDocumentFragment();
-        var $tr = document.createElement('tr');       
-        var $tdImagem = document.createElement('td');
-        var $tdMarca = document.createElement('td');
-        var $tdAno = document.createElement('td');
-        var $tdPlaca = document.createElement('td');
-        var $tdCor = document.createElement('td');
-
-        var $imagem = document.createElement('img');
-
-        $tdMarca.textContent =  $('[data-js="brand"]').get().value;  
-        $tdAno.textContent =  $('[data-js="year"]').get().value;  
-        $tdPlaca.textContent =  $('[data-js="plate"]').get().value;  
-        $tdCor.textContent = $('[data-js="color"]').get().value;  
+        var $fragment = document.createDocumentFragment();       
+        var $tr = document.createElement('tr'); 
         
-        $imagem.setAttribute('src', $('[data-js="image"]').get().value);
-        $tdImagem.appendChild($imagem);
+        var $inputs = new DOM('input');
+        var dataInputs = $inputs.map(function ($input, i, e) {
+            return $input.value;
+        });
 
-        $tr.appendChild($tdImagem);
-        $tr.appendChild($tdMarca);
-        $tr.appendChild($tdAno);
-        $tr.appendChild($tdPlaca);
-        $tr.appendChild($tdCor);
+        for (var i = 0; i < dataInputs.length; i++){
+          var $td = document.createElement('td');
+          if(i === 0) {
+            var $tdImagem = document.createElement('td');
+            var $imagem = document.createElement('img');
+              $imagem.setAttribute('src', $('[data-js="image"]').get().value);
+              $tdImagem.appendChild($imagem);
+              $tr.appendChild($tdImagem);
+          } else if (i <= 4) {
+            $td.appendChild(document.createTextNode(dataInputs[i]));
+            $tr.appendChild($td);
+          }
+        }
 
         return $fragment.appendChild($tr);
-      },
-
-      handleDataForm: function handleDataForm() {
-        var $inputs = new DOM('input');
-        var $fragment = document.createDocumentFragment();
-        var $tableRegisterCar = $('[data-js="table-register"]').get();
-        var $fragment = document.createDocumentFragment();
-        var $tr = document.createElement('tr'); 
-        var $td = document.createElement('td');
-        $inputs.map(function ($input, i, e) {
-          $td.textContent = $input.value;
-          return $td;
-          // console.log('TR: ', $fragment.appendChild($tr));
-          // $tableRegisterCar.appendChild($tr);
-        });
-        console.log($inputs.get());
-        $tr.appendChild($inputs.get());
-        console.log('TR: ', $tr);
-
       },
 
       clearForm: function clearForm() {

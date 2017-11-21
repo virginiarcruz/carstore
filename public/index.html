@@ -5,9 +5,72 @@
   <meta charset="UTF-8">
   <title>Car Store</title>
   <style>
+    html {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 20px;
+      color: green;
+    }
+
+    h2 {
+      font-size: 18px;
+      color: #333;
+    }
+
     img {
       max-width: 200px;
     }
+    fieldset {
+      border: none;
+    }
+    label {
+      display: block;
+      font-size: 12px;
+    }
+    input {
+      border: 1px solid #ccc;
+      padding: 5px 20px;
+      font-size: 14px;
+    }
+
+    .car-list,  .form-register {
+      max-width: 70%;
+      margin: 0 auto;
+    }
+
+    .form-register {
+        background: #f2f2f2;
+        padding: 20px 20px;
+    }
+
+    .car-list {
+      margin-top: 20px;
+    }
+
+    .button {
+      background: #999;
+      color: #fff;
+      margin-top: 20px;
+      border: none;
+    }
+
+    .table-cars {
+      width: 100%;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .table-cars tr {
+        padding: 10px;
+    }
+
+    .table-cars tr:nth-child(even) {background: #f1f1f1}
+    .table-cars tr:nth-child(odd) {background: #fff}
+
   </style>
 </head>
 
@@ -18,7 +81,7 @@
       <span data-js="company-phone"></span>
     </h1>
 
-    <form data-js="form-register" action="">
+    <form data-js="form-register" class="form-register" action="">
       <fieldset>
         <label>Imagem do carro:</label>
         <input data-js="image" type="url">
@@ -40,15 +103,12 @@
         <input data-js="color" type="text">
       </fieldset>
 
-      <input data-js="submit" type="submit" value="CADASTRAR">
+      <input data-js="submit" class="button" type="submit" value="CADASTRAR">
     </form>
 
-
-    <br>
-    <br>
-    <div data-js="carrosCadastrados">
+    <div data-js="carrosCadastrados" class="car-list">
      <h2>Todos os carros cadastrados</h2>
-     <table>
+     <table class="table-cars">
        <thead>
           <th>Imagem</th>
           <th>Marca</th>
@@ -62,9 +122,6 @@
        </tbody>
      </table>
     </div>
-    <br>
-    <br>
-
   </main>
 
   <script src="js/dom.js"></script>
