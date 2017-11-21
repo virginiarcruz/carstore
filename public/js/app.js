@@ -16,19 +16,24 @@
       handleClickSubmit: function handleClickSubmit(e) {
         e.preventDefault();
         var $tableRegisterCar = $('[data-js="table-register"]').get();
-        $tableRegisterCar.appendChild(app.createNewCar());
+        
+        if (!app.isValidPlate()) {
+          alert('O número da placa deve ter 3 letras e 4 números');
+          console.log('teste: ', app.isValidPlate());
+        } else {
+          $tableRegisterCar.appendChild(app.createNewCar());
+        }
         app.clearForm();
       },
 
       createNewCar: function createNewCar() {
         var $fragment = document.createDocumentFragment();       
         var $tr = document.createElement('tr'); 
-        
         var $inputs = new DOM('input');
+
         var dataInputs = $inputs.map(function ($input, i, e) {
             return $input.value;
         });
-
         for (var i = 0; i < dataInputs.length; i++){
           var $td = document.createElement('td');
           if(i === 0) {
@@ -42,8 +47,17 @@
             $tr.appendChild($td);
           }
         }
-
         return $fragment.appendChild($tr);
+      },
+
+      isValidPlate: function isValidPlate(placa) {
+        var regexPlaca = new RegExp('(^[a-zA-Z]{3})(\\d{4})');
+        placa = $('[data-js="plate"]').get().value;
+        var valido = regexPlaca.test(placa);
+          if(valido)
+              return true;
+          else
+              return false;
       },
 
       clearForm: function clearForm() {
