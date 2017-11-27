@@ -24,6 +24,8 @@
           $tableRegisterCar.appendChild(app.createNewCar());
         }
         app.clearForm();
+        app.addCell();
+        app.addContentCell();
       },
 
       createNewCar: function createNewCar() {
@@ -63,6 +65,25 @@
       clearForm: function clearForm() {
         var $form = $('[data-js="form-register"]').get();
         $form.reset();
+      },
+
+      addCell : function addCell() {
+          var tableCars = document.getElementById("table-cars");
+          var rows = [].slice.call(tableCars.rows);
+
+          var result = rows.map(function(row){
+                var $getTds = row.getElementsByTagName("td").length;
+                      if ( $getTds === 5) {
+                          return row.insertCell(-1).setAttribute('data-js', 'edit-cell');
+                      }
+                });
+      },
+
+      addContentCell : function addContentCell () {
+          var $editCell = $('[data-js="edit-cell"]').get();
+
+          $editCell.textContent = 'remover';
+          console.log($editCell);
       },
 
       companyInfo: function companyInfo() {
