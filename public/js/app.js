@@ -76,14 +76,25 @@
                       if ( $getTds === 5) {
                           return row.insertCell(-1).setAttribute('data-js', 'edit-cell');
                       }
-                });
+          });
       },
 
       addContentCell : function addContentCell () {
-          var $editCell = $('[data-js="edit-cell"]').get();
+        var $editCell = new DOM('[data-js="edit-cell"]');
+        $editCell.map(function (cell) {
+          return cell.innerHTML = '<i class="icon icon-remove">x</i>';
+        });
+        app.clickRemoveCell();
+      },
 
-          $editCell.textContent = 'remover';
-          console.log($editCell);
+ 
+      clickRemoveCell: function clickRemoveCell() {
+        var $editCell = new DOM('[data-js="edit-cell"]');
+        $editCell.on('click', function (e) {
+          e.preventDefault();
+          this.parentNode.remove();
+          console.log(this.parentNode);
+        });
       },
 
       companyInfo: function companyInfo() {
