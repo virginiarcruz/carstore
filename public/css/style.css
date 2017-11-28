@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  html, body {
+    height: 100%;
+    color: #333;
+  }
+  
+  *, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  
+  
+   html {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0 auto;
+      }
+      h1 {
+        font-size: 20px;
+        color: green;
+      }
+  
+      h2 {
+        font-size: 18px;
+        color: #333;
+      }
+  
+      img {
+        max-width: 200px;
+      }
+      fieldset {
+        border: none;
+      }
+      label {
+        display: block;
+        font-size: 12px;
+      }
+      input {
+        border: 1px solid #ccc;
+        padding: 5px 20px;
+        font-size: 14px;
+      }
+  
+      .icon {
+          cursor: pointer;
+      }
+  
+      .icon-remove {
+          font-weight: normal;
+          color: #fff;
+          font-style: normal;
+          height: 19px;
+          display: inline-block;
+          line-height: 16px;
+          padding: 0px 6px;
+          background: #e20909;
+      }
+  
+      .car-list,  .form-register {
+        max-width: 70%;
+        margin: 0 auto;
+      }
+  
+      .form-register {
+          background: #f2f2f2;
+          padding: 20px 20px;
+      }
+  
+      .car-list {
+        margin-top: 20px;
+      }
+  
+      .button {
+        background: #999;
+        color: #fff;
+        margin-top: 20px;
+        border: none;
+      }
+  
+      .table-cars {
+        width: 100%;
+        margin-top: 30px;
+        font-size: 14px;
+        color: #666;
+      }
+  
+      .table-cars tr {
+          padding: 10px;
+      }
+  
+      .table-cars tr:nth-child(even) {background: #f1f1f1}
+      .table-cars tr:nth-child(odd) {background: #fff}
