@@ -23,6 +23,8 @@
         } else {
           $tableRegisterCar.appendChild(app.createNewCar());
         }
+        app.postCars();
+        app.getOpen();
         app.clearForm();
         app.addCell();
         app.addContentCell();
@@ -60,6 +62,47 @@
               return true;
           else
               return false;
+      },
+
+      postCars: function postCars() {
+        var post = new XMLHttpRequest();
+        post.open('POST', 'http://localhost:3000/car/');
+        post.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        var $inputImage = $('[data-js="image"]').get();
+        var $inputBrand = $('[data-js="brand"]').get();
+        var $inputYear = $('[data-js="year"]').get();
+        var $inputPlate = $('[data-js="plate"]').get();
+        var $inputColor = $('[data-js="color"]').get();
+
+        post.send(
+          'image=' + $inputImage.value +
+          '&brandModel=' + $inputBrand.value +
+          '&year=' + $inputYear.value +
+          '&plate=' + $inputPlate.value +
+          '&color=' + $inputColor.value
+        );
+                
+        console.log('Inserindo carro...');
+
+        post.onreadystatechange = function() {
+          if( app.isReady.call(this) ) {
+            console.log('Carro cadastrado', post.responseText);
+          }
+        };
+      },
+
+      getOpen: function getOpen() {
+        var get = new XMLHttpRequest(); 
+        get.open('GET', 'http://localhost:3000/car');
+        get.send();
+
+        get.onreadystatechange = function () {
+            if (get.readyState === 4) {
+                console.log(JSON.parse(get.responseText));
+            }
+        };
+
       },
 
       clearForm: function clearForm() {
@@ -113,6 +156,7 @@
         $companyName.textContent = data.name;
         $companyPhone.textContent = data.phone;
       },
+
 
       isReady: function isReady() {
         return this.readyState === 4 && this.status === 200;
